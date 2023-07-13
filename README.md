@@ -29,7 +29,7 @@ Ideally, the script is run automatically, e.g. every 30 secs, on an always-on Ra
 1. encrypt mail password using the MAC-address of the machine connected to the printer (optional but recommended)
 
     ```
-    python generateKey.py
+    python3 generateKey.py
     ```
 
 2. edit `default.cfg` or create your own configuration file, e.g. `myconfig.cfg` and enter the required information: printer name, server address, mail address, (encrypted) mail password, whitelisted sender mail addresses
@@ -37,7 +37,7 @@ Ideally, the script is run automatically, e.g. every 30 secs, on an always-on Ra
 3. run script manually
 
     ```
-    python printmailatt.py myconfig.cfg
+    python3 printmailatt.py myconfig.cfg
     ```
     or use the bash script (edit first to use the correct `.cfg` file)
 
