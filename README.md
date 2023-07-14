@@ -56,3 +56,5 @@ A convenient way is to use `cron`. Add the following lines (with the correct use
 */1 * * * * pi ( sleep 30 ; /home/pi/printmailatt/printmail.sh )
 ```
 
+## Author
+Philip Schuter
