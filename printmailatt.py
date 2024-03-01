@@ -8,7 +8,7 @@ Created on Fri Jan 14 13:06:56 2022
 """
 
 # import modules
-import os, sys, configparser
+import os, sys, re, configparser
 import macpassencrypt
 from os.path import exists
 from imap_tools import MailBox, AND, OR
@@ -123,7 +123,7 @@ for myatt in filelist:
     nup             = 1
     
     # replace #seiten by #pages (if exists)
-    try: subject = subject.replace('#pages','#seiten')
+    try: subject = subject.replace('#seiten','#pages')
     except ValueError: pass
         
     # find keys in subject line    
@@ -141,9 +141,9 @@ for myatt in filelist:
     
     # get extract pages
     str_pages   = ''
-    subj_split = subject.split(' ')
-    try: str_pages   = subj_split[['#pages' in tmp for tmp in subj_split].index(True)].replace('#pages','')
-    except ValueError: pass
+    pagesmatch = re.search(r"#pages(\S+)", subject)
+    if pagesmatch:
+        str_pages = pagesmatch.group(1)
 
     # convert to pdf: check file type (allowed types: pdf, docx, pptx, text-file)
     str_file = filepath + filename
