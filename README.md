@@ -11,7 +11,7 @@ Ideally, the script is run automatically, e.g. every 30 secs, on an always-on Ra
 
 - Linux machine with internet connection and connected printer
 - dedicated IMAP mail address
-- LibreOffice, unoconv, qpdf, Python 3.x + modules
+- LibreOffice, qpdf, Python 3.x + modules
 
 ## Features
 
