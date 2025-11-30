@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jan 14 13:06:56 2022
-@requirements: LibreOffice, unoconv, qpdf, Python 3.x + modules (see below)
+@requirements: LibreOffice, qpdf, Python 3.x + modules (see below)
 @author: philip
-@version: v0.1, January 2022
+@version: v0.2, December 2025
 """
 
 # import modules
@@ -154,9 +154,9 @@ for myatt in filelist:
         
         # convert non-pdfs
         if not file_extension == '.pdf':
-            stream = os.popen('unoconv -f pdf -o "' + str_file + '.pdf" "' + str_file + '"')
+            stream = os.popen('libreoffice --headless --convert-to pdf "' + str_file + '" --outdir /tmp && mv "/tmp/' + os.path.basename(filename_noextension) + '.pdf" "' + str_file + '.pdf"')
             str_file = str_file + '.pdf' # append .pdf
-            if 'UnoException' in stream.read():
+            if 'Error' in stream.read():
                 continue # go to next iteration
                 
         # check orientation

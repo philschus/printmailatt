@@ -45,14 +45,14 @@ def get_mackey(verbose: bool) -> str:
     
     import os
     
-    mycmdiprouter = 'ip r | grep default | grep -o -P "(?<=via )(\S*)(?=\s)"' 
-    mycmdnetdev   = 'ip r | grep default | grep -o -P "(?<=dev )(\S*)(?=\s)"'
+    mycmdiprouter = r'ip r | grep default | grep -o -P "(?<=via )(\S*)(?=\s)"' 
+    mycmdnetdev   = r'ip r | grep default | grep -o -P "(?<=dev )(\S*)(?=\s)"'
     
     stRouterIP   = os.popen(mycmdiprouter).read().rstrip("\n")
     stNetDevice  = os.popen(mycmdnetdev).read().rstrip("\n")
     
     mycmd1 = r'ip addr show ' + stNetDevice + ' | grep ether | grep -o -E "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})" | head -1'
-    mycmd2 = r'arp -n | grep ' + stRouterIP + ' | grep -o -E "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})"' 
+    mycmd2 = r'ip neigh show ' + stRouterIP + ' | grep -o -E "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})"' 
     
     mac_local  = os.popen(mycmd1).read().rstrip("\n")
     mac_router = os.popen(mycmd2).read().rstrip("\n")
